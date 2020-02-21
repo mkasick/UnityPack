@@ -48,3 +48,4 @@ class RuntimePlatform(IntEnum):
 	PSMPlayer = 26
 	XboxOne = 27
 	SamsungTVPlayer = 28
+	Switch = 38
