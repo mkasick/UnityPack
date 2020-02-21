@@ -27,7 +27,7 @@ class ObjectInfo:
 		if self.type_id > 0:
 			return UnityClass(self.type_id)
 		elif self.type_id not in self.asset.typenames:
-			script = self.read()["m_Script"]
+			script = self.read().get("m_Script")
 			if script:
 				try:
 					typename = script.resolve()["m_ClassName"]
@@ -48,7 +48,7 @@ class ObjectInfo:
 				return type_trees[self.type_id]
 			elif self.class_id in type_trees:
 				return type_trees[self.class_id]
-			return TypeMetadata.default(self.asset).type_trees[self.class_id]
+			return TypeMetadata.default(self.asset).type_trees.get(self.class_id, TypeTree(self.asset.format))
 		return self.asset.types[self.type_id]
 
 	def load(self, buf):
